@@ -1,4 +1,4 @@
-// models/Invite.js
+
 import mongoose from "mongoose";
 import crypto from "crypto";
 
