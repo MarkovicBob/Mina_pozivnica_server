@@ -1,4 +1,4 @@
-import Invite from "../models/Invite.js";
+import Invite from "../src/models/Invite.js";
 
 // health check
 app.get("/health", (_req, res) => res.json({ ok: true }));
