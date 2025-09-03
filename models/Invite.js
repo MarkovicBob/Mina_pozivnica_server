@@ -13,7 +13,7 @@ const InviteSchema = new mongoose.Schema(
     email: String,
     phone: String,
     seats: Number,                                     // koliko mesta rezervišeš
-    invitationCode: { type: String, unique: true },    // npr. "mk8y3f"
+    invitationCode: { type: String, unique: true },    // npr. "mk8y3h"
     status: {
       type: String,
       enum: ["pending", "accepted", "declined"],
