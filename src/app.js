@@ -14,6 +14,10 @@ export function buildApp() {
 
   app.use(helmet());
   app.use(cors({ origin: config.corsOrigin, credentials: true }));
+  const allowed = ["http://localhost:5173", "https://pozivnicamina.netlify.app"];
+app.use(cors({
+  origin: (origin, cb) => !origin || allowed.includes(origin) ? cb(null, true) : cb(new Error("Not allowed")),
+}));
   app.use(morgan("dev"));
   app.use(compression());
   app.use(express.json({ limit: "1mb" }));
