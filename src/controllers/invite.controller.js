@@ -24,7 +24,7 @@ export async function getByCode(req, res) {
 
 /** POST /api/rsvp */
 export async function rsvp(req, res) {
-  const { code, status, attendeesCount, message } = req.body || {};
+  const { code, status, attendeesCount, message, adultCount, childCount } = req.body || {};
   if (!code || !["accepted","declined"].includes(status)) {
     return res.status(400).json({ error: "Bad request" });
   }
@@ -41,6 +41,8 @@ export async function rsvp(req, res) {
 
   inv.status = status;
   inv.attendeesCount = status === "accepted" ? Math.max(0, Number(attendeesCount) || 0) : 0;
+  inv.adultCount = status === "accepted" ? Math.max(0, Number(adultCount) || 0) : 0;
+  inv.childCount = status === "accepted" ? Math.max(0, Number(childCount) || 0) : 0;
   inv.message = message || "";
   inv.respondedAt = new Date();
   await inv.save();
