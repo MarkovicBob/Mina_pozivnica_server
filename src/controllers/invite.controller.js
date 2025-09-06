@@ -69,7 +69,7 @@ export async function adminListRsvps(req, res) {
   const status = (req.query.status || "all").toLowerCase();
   const filter = (["accepted","declined","pending"].includes(status)) ? { status } : {};
   const docs = await Invite.find(filter)
-    .select("familyName members seats status attendeesCount message respondedAt invitationCode")
+    .select("familyName members seats status attendeesCount adultCount childCount message respondedAt invitationCode")
     .sort({ status: 1, familyName: 1 })
     .lean();
   res.json(docs);
